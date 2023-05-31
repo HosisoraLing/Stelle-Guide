@@ -648,7 +648,7 @@
         pageData.page++;
       }
     }else if (num==2){
-      if (Number($("#JumpPage").val())>totalPage){
+      if (Number($("#JumpPage").val())>totalPage || Number($("#JumpPage").val())<=0){
         alert("超过页数范围")
       }else {
         pageData.page = Number($("#JumpPage").val())
