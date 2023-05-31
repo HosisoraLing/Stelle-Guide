@@ -677,15 +677,10 @@
         $($("li.click").eq([i])).attr("gid",data.list[i].gid)
         $($("li .game-jump")[i]).attr("href","GameDetail.html?gid="+data.list[i].gid)
         $($("li .game-jump")[i]).attr("target","_blank")
-      }$ ("li.click").click (GameDetail);
+      }
     })
   }
 
-    function GameDetail () {
-      var gid = $ (this).attr ("gid");
-      alert (gid);
-      window.open ("GameDetail.html?gid=" + gid);
-    }
 
 </script>
 </html>
