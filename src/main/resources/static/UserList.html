@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>所有用户数据</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<p>所有用户数据：      您当前的权限等级为：<span id="notice1"></span><span id="notice2"></span></p>
+<a href="list.html">返回主页</a>
+<table id="form" border="1">
+      <tr>
+        <th>UID</th>
+        <th>昵称</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>邮箱</th>
+        <th>Steam ID</th>
+        <th>权限等级</th>
+      </tr>
+      <tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr><tr>
+        <td class="uid"></td>
+        <td class="nickname"></td>
+        <td class="username"></td>
+        <td class="password"></td>
+        <td class="email"></td>
+        <td class="steamid"></td>
+        <td class="permissionlevel"></td>
+      </tr>
+
+</table>
+<script>
+  level=0;
+</script>
+<script>
+  $.get("/getPermissionLevel",null,function (PermissionLevel){
+    console.log("当前登录用户的权限等级：",PermissionLevel);
+    level=PermissionLevel
+
+    $("#notice1").html(level);
+    if(level>=2){
+      console.log("level=",level)
+      $("#notice2").html("-允许所有访问")
+    }else {
+      $("#notice2").html("-访问权限受限")
+    }
+
+  },"text")
+</script>
+<script>
+  $.get("/selectUser",null,function (data){
+    console.log(data);
+    console.log(data.length);
+    console.log("当前登录用户的权限等级：",level);
+    for (i=0;i<data.length;i++){
+      console.log(i);
+      $($("tr .uid")[i]).text(data[i].uid);
+      $($("tr .nickname")[i]).text(data[i].nickname);
+      $($("tr .username")[i]).text(data[i].username);
+
+      $($("tr .email")[i]).text(data[i].email);
+      $($("tr .steamid")[i]).text(data[i].steamid);
+      $($("tr .permissionlevel")[i]).text(data[i].permissionlevel);
+      if(level>=2){
+        $($("tr .password")[i]).text(data[i].password);
+      }else {
+        $($("tr .password")[i]).text("访问权限受限");
+      }
+    }
+    i=0
+  },"json")
+</script>
+
+</body>
+</html>

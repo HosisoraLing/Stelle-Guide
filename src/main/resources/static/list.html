@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页|星穹指南</title>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+</head>
+<body>
+<p><a href="UserList.html">查看用户数据</a> <a href="/logOut">注销</a></p>
+<div>欢迎，<span id="span1"></span>
+    <div id="allGames">
+        <ul>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+            <li>
+                <img src=""></img>
+                <p class="chinesetitle"></p>
+                <p class="englishtitle"></p>
+                <p class="rating"></p>
+            </li>
+        </ul>
+    </div>
+    <div id="pageBox">
+        <button onclick="changePage(0)">上一页</button>
+        第<span id="PageNum">1</span>/<span id="TotalPage"></span>页
+        <button onclick="changePage(1)">下一页</button>
+        <input id="JumpPage" size="1">
+        <button onclick="changePage(2)">跳转</button>
+
+    </div>
+    <div style="text-align: center;margin:250px auto;">
+        <div id="pager" class="pager clearfix">
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="js/jquery.z-pager.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    pageNumber=0;
+</script>
+<script type="text/javascript">
+    $("#pager").zPager({
+        totalData: 50,
+        htmlBox: $('#wraper'),
+        btnShow: true,
+        ajaxSetData: false
+    });
+
+    function currentPage(currentPage){
+        /*
+            触发页码数位置： Page/js/jquery.z-pager.js 64行
+        */
+        console.log("当前页码数：" + currentPage);
+        pageNumber=currentPage;
+    }
+
+</script>
+<script>
+    let size=8;
+    let page=1;
+    pageData = {
+        "page":page,
+        "size":size
+    }
+    $(function (){
+        changePage();
+    })
+    $("#span1").load("/getNickName");
+
+    function changePage(num){
+        var totalPage = Number($("#TotalPage").text())
+        if(num==0){
+            alert("点击了上一页："+pageData.page);
+            if(pageData.page==1){
+                alert("没有上一页");
+            }else {
+                pageData.page--;
+            }
+        }else if (num==1){
+            alert("点击了下一页："+pageData.page);
+            if (pageData.page==totalPage){
+                alert("已经是尾页了")
+            }else {
+                pageData.page++;
+            }
+        }else if (num==2){
+            if (Number($("#JumpPage").val())>totalPage){
+                alert("超过页数范围")
+            }else {
+                pageData.page = Number($("#JumpPage").val())
+            }
+        }
+        $.get("/selectGame",pageData,function (data){
+            console.log(data)
+            //修改页面
+            $("#PageNum").text(pageData.page);
+            //页面总页数
+            $("#TotalPage").text(data.total);
+            for (i=0;data.list.length;i++){
+                $($("li img")[i]).attr("src",data.list[i].cover);
+                $($("li .chinesetitle")[i]).text(data.list[i].chinesetitle);
+                $($("li .englishtitle")[i]).text(data.list[i].englishtitle);
+                $($("li .rating")[i]).text(data.list[i].rating);
+            }
+        })
+    }
+
+
+
+
+
+
+
+</script>
+</html>

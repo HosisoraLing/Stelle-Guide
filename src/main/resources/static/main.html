@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>主页|星穹指南</title>
+  <link rel="stylesheet" type="text/css" href="statics/css/style.css"/>
+  <script src="js/jquery.min.js"></script>
+  <style>
+    .pageBox{
+      text-align:center;
+    }
+    .game-title{
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+<body>
+<div class="main">
+  <div class="dy-content">
+    <div class="dy-videos">
+      <ul class="dy-video-list">
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <h4 class="dy-video-title game-title"> <a></a> </h4>
+              <span class="dy-video-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class="dy-video-title game-title"><a class="game-title"></a></span>
+            <span class="dy-video-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+        <li data- class="dy-video-item dy-video-meta-right">
+          <div class="dy-video-meta">
+            <div class="dy-video-meta-bg"> </div>
+            <div class="dy-video-meta-dy">
+              <span class="game-title"></span>
+              <span class="dy-video-rating game-rating"></span>
+              <ul class="dy-video-meta-list">
+                <li class="dy-video-actors"> <span class="dy-video-tip"> 开发商: </span> <a class="game-developer"></a></li>
+                <li class="dy-video-types"> <span class="dy-video-tip">类型:</span> <span class="dy-video-meta-filter game-type"></span> </li>
+                <li class="dy-video-areas"> <span class="dy-split">|</span> <span class="dy-video-tip">题材:</span> <span class="dy-video-meta-filter game-theme"></span> </li>
+                <li class="dy-video-starts"> <span class="dy-split">|</span> <span class="dy-video-tip">发行年份:</span> <span class="dy-video-meta-filter game-year"></span> </li>
+              </ul>
+              <p class="dy-video-intro game-brief"> </p>
+            </div>
+            <div class="dy-video-meta-bg"> </div>
+          </div>
+          <div class="dy-video-poster"> <a class="dy-video-link"> <img class="dy-video-img" src="" height=100%> <span class="dy-video-nocomplete"></span>  <span class="dy-video-bg"></span> </a> </div>
+          <div class="dy-video-primary">
+            <span class=" game-title" ></span>
+            <span class="dy-video-rating game-rating"></span> </div>
+        </li>
+      </ul>
+      <div id="pageBox" class="pageBox">
+        <button onclick="changePage(0)">上一页</button>
+        第<span id="PageNum">1</span>/<span id="TotalPage"></span>页
+        <button onclick="changePage(1)">下一页</button>
+        <input id="JumpPage" size="1">
+        <button onclick="changePage(2)">跳转</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  let size=24;
+  let page=1;
+  pageData = {
+    "page":page,
+    "size":size
+  }
+  $(function (){
+    changePage();
+  })
+  $("#span1").load("/getNickName");
+
+  function changePage(num){
+    var totalPage = Number($("#TotalPage").text())
+    if(num==0){
+      alert("点击了上一页："+pageData.page);
+      if(pageData.page==1){
+        alert("没有上一页");
+      }else {
+        pageData.page--;
+      }
+    }else if (num==1){
+      alert("点击了下一页："+pageData.page);
+      if (pageData.page==totalPage){
+        alert("已经是尾页了")
+      }else {
+        pageData.page++;
+      }
+    }else if (num==2){
+      if (Number($("#JumpPage").val())>totalPage){
+        alert("超过页数范围")
+      }else {
+        pageData.page = Number($("#JumpPage").val())
+      }
+    }
+    $.get("/selectGame",pageData,function (data){
+      console.log(data)
+      //修改页面
+      $("#PageNum").text(pageData.page);
+      //页面总页数
+      $("#TotalPage").text(data.total);
+      for (i=0;data.list.length;i++){
+        $($("li .dy-video-img")[i]).attr("src",data.list[i].cover);
+        $($("li .game-rating")[i]).text(data.list[i].rating);
+        $($("li .game-developer")[i]).text(data.list[i].developer);
+        $($("li .game-type")[i]).text(data.list[i].type);
+        $($("li .game-theme")[i]).text(data.list[i].theme);
+        $($("li .game-year")[i]).text(data.list[i].year);
+        $($("li .game-brief")[i]).text(data.list[i].brief);
+        $($("li .game-title")[i]).text(data.list[i].chinesetitle);
+        $($(".dy-video-primary .dy-video-rating")[i]).text(data.list[i].rating);
+      }
+    })
+  }
+
+
+
+
+
+
+
+</script>
+</html>
