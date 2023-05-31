@@ -112,8 +112,8 @@ a:hover {
 	position: relative;
 	opacity: 0;
 	visibility: hidden;
-	transform: scale(0.5);
-	transform-origin: left center;
+	transform: scale(0.8);
+	transform-origin: center left;
 	transition: transform .2s, opacity .2s;
 	z-index: 1;
 }
