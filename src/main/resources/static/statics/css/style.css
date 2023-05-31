@@ -6,7 +6,7 @@
 }
 html, body {
 	font-size: 13px;
-	font-family: "microsoft yahei";
+	font-family: Bahnschrift, "Microsoft YaHei", sans-serif;
 	background: #F4F4F5;
 }
 ul {
@@ -29,23 +29,30 @@ a:hover {
 	margin-left: -10px;
 	margin-right: -10px;
 	min-height: 500px;
-	overflow: hidden;
-	position: relative
+	position: relative;
+}
+.dy-video-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 .dy-content .dy-videos .dy-video-item {
 	float: left;
 	width: 180px;
 	margin-right: 20px;
 	margin-bottom: 18px;
-	position: relative
+	position: relative;
+	border-radius: 4px;
+	background-color: white;
 }
 .dy-content .dy-videos .dy-video-item .dy-video-poster {
-	position: relative
+	position: relative;
 }
 .dy-content .dy-videos .dy-video-item .dy-video-link {
 	display: block;
 	height: 235px;
-	overflow: hidden
+	overflow: hidden;
 }
 .dy-content .dy-videos .dy-video-item .dy-video-link .s-pay {
 	position: absolute;
@@ -73,9 +80,8 @@ a:hover {
 }
 .dy-content .dy-videos .dy-video-primary {
 	position: relative;
-	background-color: #fff;
 	height: 40px;
-	padding: 5px;
+	padding: 10px 14px;
 	line-height: 20px
 }
 .dy-content .dy-videos .dy-video-primary .dy-video-title {
@@ -97,19 +103,27 @@ a:hover {
 }
 .dy-content .dy-videos .dy-video-primary .dy-video-rating {
 	position: absolute;
-	right: 5px;
-	top: 5px;
+	right: 14px;
+	top: 10px;
 	color: #FF3728;
 	font-size: 15px
 }
 .dy-content .dy-videos ul li.dy-video-item .dy-video-meta {
-	display: none
+	position: relative;
+	opacity: 0;
+	visibility: hidden;
+	transform: scale(0.5);
+	transform-origin: left center;
+	transition: transform .2s, opacity .2s;
+	z-index: 1;
 }
 .dy-content .dy-videos ul li.dy-video-item:hover .dy-video-poster {
 	z-index: 3
 }
 .dy-content .dy-videos ul li.dy-video-item:hover .dy-video-meta {
-	display: block;
+	opacity: 1;
+	transform: scale(1);
+	visibility: visible;
 }
 .dy-content .dy-videos .dy-video-meta .dy-video-meta-bg {
 	position: absolute;
@@ -117,22 +131,22 @@ a:hover {
 	width: 500px;
 	height: 242px;
 	background-color: #fff;
-	border: 1px solid #000;
-	border-radius: 2px;
+	border-radius: 4px;
 	z-index: 2;
-	box-shadow: -1px 10px 35px 0px rgba(0,0,0,0.39);
--webkit-box-shadow: -1px 10px 35px 0px rgba(0,0,0,0.39);
--moz-box-shadow: -1px 10px 35px 0px rgba(0,0,0,0.39);
+	box-shadow: -1px 10px 35px 0px rgba(0,0,0,0.2);
+	-webkit-box-shadow: -1px 10px 35px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: -1px 10px 35px 0px rgba(0,0,0,0.2);
 }
 .dy-content .dy-videos .dy-video-meta .dy-video-meta-dy {
 	position: absolute;
 	top: 0;
-	width: 280px;
-	padding: 0 18px;
+	width: 315px;
+	padding: 14px 18px;
 	height: 235px;
 	background-color: #fff;
 	overflow: hidden;
-	z-index: 4
+	z-index: 4;
+	box-sizing: border-box;
 }
 .dy-content .dy-videos .dy-video-meta .dy-video-title {
 	line-height: 40px;
@@ -197,10 +211,10 @@ a:hover {
 }
 .dy-content .dy-videos .dy-video-meta .dy-video-rating {
 	position: absolute;
-	right: 30px;
-	top: 10px;
+	right: 22px;
+	top: 16px;
 	color: #FF3728;
-	font-size: 16px
+	font-size: 36px;
 }
 .dy-content .dy-videos .dy-video-meta-left .dy-video-meta-bg {
 	right: -4px
@@ -213,4 +227,48 @@ a:hover {
 }
 .dy-content .dy-videos .dy-video-meta-right .dy-video-meta-dy {
 	left: 180px
+}
+.game-title {
+	display: flex;
+	font-size: 28px;
+}
+.game-title4 {
+	display: flex;
+	margin-bottom: 16px;
+}
+.pageBox {
+	padding-bottom: 32px;
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+}
+.pageBox button {
+	padding: 8px 12px;
+	border: 0;
+	border-radius: 4px;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.20);
+	cursor: pointer;
+	transition: .2s;
+}
+.pageBoxText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+}
+.pageBox input {
+	padding: 8px 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: white;
+	border-radius: 4px;
+	text-align: center;
+	font-family: inherit;
+}
+.pageBox button:hover {
+	background-color: #fafafa;
+}
+.pageBox button:active {
+	transform: scale(0.9);
 }
