@@ -158,6 +158,10 @@
 			font-size: 30px;
 			font-weight: bolder;
 		}
+		.engtitle{
+			font-size: 20px;
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
@@ -170,6 +174,7 @@
 		</div>
 		<div class="a2">
 			<p id="gameName" class="title"></p>
+			<p id="englishName" class="engtitle"></p>
 			<div class="a21">
 				<div class="a211">
 					<span class="color pricess">售价</span>
@@ -200,7 +205,7 @@
 	<p>有什么新鲜事想告诉大家?</p>
 	<div class="message" contentEditable='true'></div>
 	<div class="But">
-		<img src="./images/bba_thumb.gif" class='bq' />
+
 		<span class='submit' onclick="addComment()">发表</span>
 		<input>
 	</div>
@@ -274,6 +279,7 @@
 			$("#gameIntro").text(data.info)
 			$("#webTitle").text(data.chinesetitle+"|星穹指南")
 			$("#msrp").text(data.defaultprice)
+			$("#englishName").text(data.englishtitle)
 			if(data.alltimelowprice==0){
 				$("#atlprice").text("历史最低：免费开玩！")
 			}else {
