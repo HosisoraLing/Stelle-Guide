@@ -11,7 +11,7 @@ public class UserRating {
     private Integer gid;
     private Integer uid;
     private Integer rating;
-    private Date time;
+    private String time;
     private Integer performance;
     private Integer graphic;
     private Integer story;

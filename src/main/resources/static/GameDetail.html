@@ -202,9 +202,9 @@
 
 <!--添加评论-->
 <div id="qq">
-	<p>有什么新鲜事想告诉大家?</p>
-	<div class="message" contentEditable='true'></div>
-	<div class="But">
+	<p>有什么新鲜事想告诉大家?(虽然没有光标但是可以正常打字！)</p>
+	<div class="message" contentEditable="true"></div>
+	<div class="But" contentEditable="true">
 
 		<span class='submit' onclick="addComment()">发表</span>
 		<input>
@@ -217,8 +217,8 @@
 		<div class="headUrl">
 			<img src='./images/tx.jpg' width='50' height='50'>
 			<div>
-				<span class="title">木林森里没有木</span>
-				<span class="time">2018-01-01</span>
+				<span class="title"></span>
+				<span class="time"></span>
 			</div>
 			<a class="del">删除</a>
 		</div>
@@ -270,6 +270,7 @@
 	}
 
 	$(function (){
+
 		var gid = getUrlParam("gid");
 		//发送请求，通过gid查询游戏数据
 		$.get("/getGameById",{"gid":gid},function (data){
@@ -327,6 +328,7 @@
 
 
 	function addComment(){
+
 		var uid;
 		var gid = getUrlParam("gid");
 		var content = $(".message").val();
