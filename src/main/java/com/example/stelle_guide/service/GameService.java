@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.stelle_guide.dao.Discount_HistoryDao;
 import com.example.stelle_guide.dao.GameDao;
+import com.example.stelle_guide.dao.UserRatingDao;
 import com.example.stelle_guide.pojo.Game;
 import com.example.stelle_guide.pojo.MyPage;
-import com.example.stelle_guide.pojo.UserRating;
+import com.example.stelle_guide.pojo.Userrating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class GameService {
     @Autowired
     GameDao gameDao;
     Discount_HistoryDao discount_historyDao;
+    UserRatingDao userRatingDao;
 
 
     public Map<String, Object> select(MyPage myPage){
@@ -62,7 +64,7 @@ public class GameService {
         return gameRs.getDeveloperid();
     }
 
-    public List<UserRating> getRatings(Integer gid){
+    public List<Userrating> getRatings(Integer gid){
         return gameDao.showRatings(gid);
     }
 
@@ -91,6 +93,25 @@ public class GameService {
             return gameRs.getDefaultprice();
         }else {
             return gameRs.getOnsaleprice();
+        }
+    }
+
+    public String addComment(Userrating userRating) {
+        if(userRatingDao.insert(userRating)!=0){
+            return "添加成功";
+        }else {
+            return "添加失败";
+        }
+    }
+
+    public String increaseAgree(Integer rid) {
+        Userrating rating=userRatingDao.selectById(rid);
+        Integer likes=rating.getAgree()+1;
+        rating.setAgree(likes);
+        if(userRatingDao.updateById(rating)!=0){
+            return "赞同成功";
+        }else {
+            return "赞同失败";
         }
     }
 }

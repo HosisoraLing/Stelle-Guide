@@ -71,7 +71,7 @@
             alert("正在连接智库...");
             $.get("/login",$("#loginform").serialize(),function (data){
                 if(data=="登陆成功"){
-                    location.href = "list.html";
+                    location.href = "main.html";
                     alert("欢迎您，开拓者");
                 }else{
                     location.href = "index.html";

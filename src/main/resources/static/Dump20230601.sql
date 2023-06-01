@@ -176,10 +176,11 @@ DROP TABLE IF EXISTS `userrating`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `userrating` (
+  `rid` int NOT NULL AUTO_INCREMENT,
   `gid` int NOT NULL,
   `uid` int NOT NULL,
-  `rating` int NOT NULL,
-  `time` date DEFAULT NULL,
+  `rating` int DEFAULT NULL,
+  `time` varchar(45) DEFAULT NULL,
   `performance` int DEFAULT NULL,
   `graphic` int DEFAULT NULL,
   `story` int DEFAULT NULL,
@@ -187,10 +188,17 @@ CREATE TABLE `userrating` (
   `lifetime` int DEFAULT NULL,
   `PriceToFunRatio` int DEFAULT NULL,
   `comment` text,
-  PRIMARY KEY (`gid`,`uid`),
-  UNIQUE KEY `gid_UNIQUE` (`gid`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `agree` int DEFAULT '0',
+  `disagree` int DEFAULT '0',
+  `useful` int DEFAULT '0',
+  `funny` int DEFAULT '0',
+  `shit` int DEFAULT '0',
+  `voiceofpeople` int DEFAULT '0',
+  `avatar` text,
+  `nickname` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`rid`),
+  UNIQUE KEY `rid_UNIQUE` (`rid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,6 +207,7 @@ CREATE TABLE `userrating` (
 
 LOCK TABLES `userrating` WRITE;
 /*!40000 ALTER TABLE `userrating` DISABLE KEYS */;
+INSERT INTO `userrating` VALUES (1,1,1,10,'2023/6/1 21:23:37',NULL,NULL,NULL,NULL,NULL,NULL,'111',0,0,0,0,0,0,'https://i1.hdslb.com/bfs/face/b9f3d00b2646e42e0fbf45215b4b0fb3e0859644.jpg@240w_240h_1c_1s_!web-avatar-space-header.webp','星空凌'),(2,1,1,10,'2023/6/1 21:26:54',NULL,NULL,NULL,NULL,NULL,NULL,'222',0,0,0,0,0,0,'https://i1.hdslb.com/bfs/face/b9f3d00b2646e42e0fbf45215b4b0fb3e0859644.jpg@240w_240h_1c_1s_!web-avatar-space-header.webp','星空凌');
 /*!40000 ALTER TABLE `userrating` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -211,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-01 17:35:44
+-- Dump completed on 2023-06-01 21:28:25

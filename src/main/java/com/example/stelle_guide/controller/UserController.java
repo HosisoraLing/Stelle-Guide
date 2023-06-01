@@ -47,6 +47,10 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping("/getUserById")
+    public User getUserById(Integer uid){
+        return userService.getUserById(uid);
+    }
     @RequestMapping("/getUserName")
     public String getUserName(HttpSession session){
         User user = (User) session.getAttribute("user1");

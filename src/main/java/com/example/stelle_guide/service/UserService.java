@@ -65,4 +65,10 @@ public class UserService {
         }
 
     }
+
+    public User getUserById(Integer uid) {
+        QueryWrapper qw = new QueryWrapper();
+        qw.eq("uid",uid);
+        return userDao.selectById(qw);
+    }
 }
