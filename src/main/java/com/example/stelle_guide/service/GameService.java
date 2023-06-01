@@ -2,6 +2,7 @@ package com.example.stelle_guide.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.stelle_guide.dao.Discount_HistoryDao;
 import com.example.stelle_guide.dao.GameDao;
 import com.example.stelle_guide.pojo.Game;
 import com.example.stelle_guide.pojo.MyPage;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class GameService {
     @Autowired
     GameDao gameDao;
+    Discount_HistoryDao discount_historyDao;
 
 
     public Map<String, Object> select(MyPage myPage){
@@ -77,5 +79,18 @@ public class GameService {
     public Float getPrice(Integer gid) {
         Game gameRs=gameDao.selectById(gid);
         return gameRs.getDefaultprice();
+    }
+
+    public Game getGameById(Integer gid) {
+        return gameDao.selectById(gid);
+    }
+
+    public Float getCurentPrice(Integer gid) {
+        Game gameRs=gameDao.selectById(gid);
+        if(gameRs.getIsdiscount()==0){
+            return gameRs.getDefaultprice();
+        }else {
+            return gameRs.getOnsaleprice();
+        }
     }
 }

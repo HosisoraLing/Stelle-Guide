@@ -18,7 +18,7 @@ public class Game {
     private Integer developerid;
     private String developer;
     private Integer publisherid;
-    private String isdiscount;
+    private Integer isdiscount;
     private Float defaultprice;
     private String alltimelowprice;
     private String info;
@@ -27,4 +27,5 @@ public class Game {
     private String type;
     private Integer year;
     private String brief;
+    private Float onsaleprice;
 }

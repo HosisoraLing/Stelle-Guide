@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>商品详情</title>
+	<title id="webTitle">星穹指南</title>
 	<script src="js/jquery-1.12.4.js" type="text/javascript"></script>
 	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/common.css">
@@ -15,7 +15,7 @@
 		}
 
 		body {
-			background: url("images/bg.jpg") no-repeat fixed;
+
 		}
 
 		#qq {
@@ -150,6 +150,14 @@
 			color: transparent;
 			background-image: linear-gradient(to right, #778899 0%, #333 100%);
 		}
+		.title{
+			font-size: 40px;
+			font-weight: bolder;
+		}
+		.pricess{
+			font-size: 30px;
+			font-weight: bolder;
+		}
 	</style>
 </head>
 <body>
@@ -158,45 +166,28 @@
 	<div style="clear: both;"></div>
 	<div id="content">
 		<div class="a1">
-			<img class="big" id="movieImg" src="img/cake1_big.jpg">
+			<img class="big" id="gameCover" src="">
 		</div>
 		<div class="a2">
-			<p id="movieName">提拉米苏(约2磅)</p>
+			<p id="gameName" class="title"></p>
 			<div class="a21">
 				<div class="a211">
-					<span class="color">售价</span>
-					<span class="prices">￥198</span>
-					<span class="shic">市场价<span class="prices2">￥338</span></span>
-					<span class="yis">已售6264件</span>
+					<span class="color pricess">售价</span>
+					<span class="prices" id="Price">￥198</span>
+					<div id="yuanjia">
+					<span class="shic"><br>原价<span class="prices2" id="msrp"></span></span>
+					</div>
+					<div id="SaleRatio"></div>
+					<span class="yis" id="atlprice">历史最低：</span>
 				</div>
 				<div class="a22">
 					<p></p>
 					<span class="color">详情</span>
-					<span class="neir" id="movieXiangqing">鸡蛋、奶油、小麦粉、芒果、榴莲肉、巧克力、干酪</span>
+					<span class="neir" id="gameIntro"></span>
 				</div>
 
-				<div id="div_box-right-7"  onselectstart="return false;">
-					<span>数量</span>
-					<div id="div_box-right-7-div-1">1</div>
-					<div id="div_box-right-7-div-2">
-						<div id="div_box-right-7-div-2-onck1">
-							<svg t="1588663432940" style="width: 0.7em;height: 0.7em;font-weight: 700;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2160" width="200" height="200"><path d="M511.867 399.019l292.16 292.155c12.27 12.28 32.186 12.28 44.457 0 12.28099999-12.27 12.281-32.186 0-44.457l-314.388-314.388c-12.27-12.28-32.186-12.28-44.457 0l-314.387 314.388c-6.14 6.136-9.211 14.183-9.211 22.228s3.071 16.092 9.21099999 22.228c12.27 12.28 32.186 12.28 44.45700001 1e-8l292.159-292.15500001z" p-id="2161" fill="#bfbfbf"></path></svg>
-						</div>
-						<div id="div_box-right-7-div-2-onck2">
-							<svg t="1588663543242" style="width: 0.7em;height: 0.7em;font-weight: 700;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2343" width="200" height="200"><path d="M512.133 624.981l-292.16-292.155c-12.27-12.28-32.186-12.28-44.457 0-12.281 12.27-12.281 32.186 0 44.457l314.388 314.388c12.27 12.28 32.186 12.28 44.457 0l314.387-314.388c6.14-6.136 9.211-14.183 9.211-22.228s-3.071-16.092-9.211-22.228c-12.27-12.28-32.186-12.28-44.457 0l-292.159 292.155z" p-id="2344" fill="#bfbfbf"></path></svg>
-						</div>
-					</div>
-					<span style="position: absolute;left: 0;color: #838383;line-height: 43px;font-size: 12px;margin-left: 170px;float: left;">件</span>
-				</div>
 
-				<div class="a25" onclick="addByCar()">
-					<a href="#">
-						<button class="a25color1">加入购物车</button>
-					</a>
-					<a href="#">
-						<button class="a25color2">加入购物车</button>
-					</a>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -274,58 +265,81 @@
 	}
 
 	$(function (){
-		var mid = getUrlParam("mid");
-		//发送请求，通过mid查询电影数据
-		$.get("/getOneMovie",{"mid":mid},function (data){
+		var gid = getUrlParam("gid");
+		//发送请求，通过gid查询游戏数据
+		$.get("/getGameById",{"gid":gid},function (data){
 			console.log(data);
-			$("#movieImg").attr("src",data.img)
-			$("#movieName").text(data.title)
-			$("#movieXiangqing").text(data.msg)
+			$("#gameCover").attr("src",data.cover)
+			$("#gameName").text(data.chinesetitle)
+			$("#gameIntro").text(data.info)
+			$("#webTitle").text(data.chinesetitle+"|星穹指南")
+			$("#msrp").text(data.defaultprice)
+			if(data.alltimelowprice==0){
+				$("#atlprice").text("历史最低：免费开玩！")
+			}else {
+				$("#atlprice").text("历史最低："+data.alltimelowprice)
+			}
+			$.get("/getCurrentPrice",{"gid":gid},function (data2){
+				if(data2!=0){
+					$("#Price").text(data2)
+					var t = document.getElementById('SaleRatio');//选取id为SaleRatio的div元素// 隐藏元素
+					t.style.visibility = 'hidden';
+					var a = document.getElementById('yuanjia');//选取id为SaleRatio的div元素// 隐藏元素
+					a.style.visibility = 'visible';
+					if(data.defaultprice!=data2){
+						var t = document.getElementById('SaleRatio');//选取id为SaleRatio的div元素// 隐藏元素
+						t.style.visibility = 'visible';// 显示元素
+						var ratio=0.0;
+						ratio = (((data.defaultprice-data2)/data.defaultprice)*100)
+						ratio = ratio.toFixed(1);
+						if (ratio>0){
+							$("#SaleRatio").text("-"+ratio+"%")
+							t.style.color = "green";
+						}else {
+							$("#SaleRatio").text("+"+ratio+"%")
+							t.style.color = "red";
+						}
+
+					}else {
+						var t = document.getElementById('SaleRatio');//选取id为SaleRatio的div元素// 隐藏元素
+						t.style.visibility = 'hidden';
+					}
+				}else {
+					var t = document.getElementById('SaleRatio');//选取id为SaleRatio的div元素// 隐藏元素
+					t.style.visibility = 'hidden';
+					$("#Price").text("免费开玩！");
+					var a = document.getElementById('yuanjia');//选取id为SaleRatio的div元素// 隐藏元素
+					a.style.visibility = 'hidden';
+				}
+
+			})
+
 		})
 
 		showComment();
 	})
 
-	function addByCar(){
-		var uid;
-		var mid = getUrlParam("mid");
-		var number = 7;//Number($(".bang").text());
-		$.get("/getUser",null,function (data){
-			uid = data.uid;
-			alert("添加到购物车"+"电影id:"+mid+"数量:"+number+"用户id："+uid)
-			//if (uid!=null){
-			$.get("/addBuyCar",{"uid":uid,"mid":mid,"number":number},function (data){
-				alert(data)
-			})
-
-			//}else {
-			//   alert("请登录")
-			// location.href = "MovieDetail.html?mid="+mid;
-			//}
-		})
-	}
 
 	function addComment(){
 		var uid;
-		var mid = getUrlParam("mid");
+		var gid = getUrlParam("gid");
 		var content = $(".message").val();
 		$.get("/getUser",null,function (data){
 			uid = data.uid;
 			if (uid!=null){
-				alert("用户"+uid+"电影"+uid+"评论"+content)
-				$.get("/addComment",{"uid":uid,"mid":mid,"content":content},function (data){
+				$.get("/addComment",{"uid":uid,"gid":gid,"content":content},function (data){
 					alert("data")
 				})
 			} else {
 				alert("请登录")
-				location.href = "MovieDetail.html?mid="+mid;
+				location.href = "GameDetail.html?gid="+gid;
 			}
 		})
 	}
 
 	function showComment(){
-		var mid = getUrlParam("mid");
-		$.get("/showComment",{"mid":mid},function (data){
+		var mid = getUrlParam("gid");
+		$.get("/showComment",{"gid":gid},function (data){
 			console.log(data)
 			var tbody="";
 			for (var i=0;i<data.length;i++){

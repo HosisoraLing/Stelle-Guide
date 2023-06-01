@@ -82,4 +82,14 @@ public class UserController {
         session.invalidate();
         return new RedirectView("/index.html");
     }
+
+    @RequestMapping("/isLoggedIn")
+    public String isLoggedIn(HttpSession session){
+        User user=(User) session.getAttribute("user1");
+        if(user!=null){
+            return "用户已登录";
+        }else {
+            return "尚未登录";
+        }
+    }
 }

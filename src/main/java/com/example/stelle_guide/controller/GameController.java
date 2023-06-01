@@ -23,7 +23,10 @@ public class GameController {
         return gameService.select(myPage);
 
     }
-
+    @RequestMapping("/getGameById")
+    public Game getGameById(Integer gid){
+        return gameService.getGameById(gid);
+    }
     @RequestMapping("/getGameInfo")
     public String getGameInfo(Integer gid){
         return gameService.getGameInfo(gid);
@@ -54,9 +57,9 @@ public class GameController {
         return gameService.getRating(gid);
     }
 
-    @RequestMapping("/getPrice")
+    @RequestMapping("/getCurrentPrice")
     public Float getPrice(Integer gid){
-        return gameService.getPrice(gid);
+        return gameService.getCurentPrice(gid);
     }
 
     @RequestMapping("/getRatings")

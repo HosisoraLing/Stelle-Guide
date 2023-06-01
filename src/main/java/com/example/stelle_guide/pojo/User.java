@@ -14,4 +14,6 @@ public class User {
     private String password;
     private String email;
     private Integer permissionlevel;
+    private String avatar;
+    private String bio;
 }
