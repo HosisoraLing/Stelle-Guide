@@ -40,6 +40,11 @@ public class UserController {
         User user = (User) session.getAttribute("user1");
         return user.getUid();
     }
+    @RequestMapping("/getAvatar")
+    public String getAvatar(HttpSession session){
+        User user = (User) session.getAttribute("user1");
+        return user.getAvatar();
+    }
 
     @RequestMapping("/getUser")
     public User getUser(HttpSession session){
@@ -49,6 +54,7 @@ public class UserController {
 
     @RequestMapping("/getUserById")
     public User getUserById(Integer uid){
+        System.out.println(uid);
         return userService.getUserById(uid);
     }
     @RequestMapping("/getUserName")

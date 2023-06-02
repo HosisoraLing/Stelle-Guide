@@ -176,7 +176,17 @@
 </head>
 <body>
 <div id="all">
+	<div>
+		<p style="font-size: 20px;text-align: right;background-color: gray">欢迎：<image width='30' height='30' id="avatar0" style=""></image><a href="" id="nickname" target="_blank"></a> <a href="/logOut">注销</a></p>
+		<script>
+			$.get("/getUser",null,function (data){
+				$("#nickname").load("/getNickName");
 
+				$("#nickname").attr("href","/space.html?uid="+data.uid)
+				$("#avatar0").attr("src",data.avatar)
+			})
+		</script>
+	</div>
 	<div style="clear: both;"></div>
 	<div id="content">
 		<div class="a1">

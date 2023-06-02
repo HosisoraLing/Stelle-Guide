@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service
@@ -77,8 +78,8 @@ public class UserService {
     }
 
     public User getUserById(Integer uid) {
-        QueryWrapper qw = new QueryWrapper();
+        QueryWrapper<User> qw = new QueryWrapper();
         qw.eq("uid",uid);
-        return userDao.selectById(qw);
+        return userDao.selectById(uid);
     }
 }

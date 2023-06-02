@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心|星穹指南</title>
+    <meta name="referrer" content="no-referrer">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <p style="font-size: 20px;text-align: right;background-color: gray">欢迎：<image width='30' height='30' id="avatar0" style=""></image><a href="" id="nickname" target="_blank"></a> <a href="/logOut">注销</a></p>
+    <script>
+        $.get("/getUser",null,function (data){
+            $("#nickname").load("/getNickName");
+
+            $("#nickname").attr("href","/space.html?uid="+data.uid)
+            $("#avatar0").attr("src",data.avatar)
+        })
+    </script>
+</div>
+    <div>
+      <image id="avatar" src=""></image><span id="nickname"></span>
+      <span id="username"></span>
+      <span id="uid"></span>
+      <span id="password"></span>
+      <span id="email"></span>
+      <span id="steamID"></span>
+      <span id="bio"></span>
+      <span id="permissionlevel"></span>
+    </div>
+</body>
+<script>
+  function getUrlParam(name) {
+    //
+    var reg = new RegExp ("(^|&)" + name + "=([^&]*)(&|$)");
+    //保存地址栏那个请求的参数
+    var r = window.location.search.substr (1).match (reg);
+    if (r != null) {
+      //解密链接
+      return unescape (r[2]);
+
+    }
+    else {
+      return null;
+    }
+  }
+
+    uid =getUrlParam("uid");
+    console.log(uid);
+    $.get("/getUser",null,function (data){
+      if(data.uid==uid){
+          permissionlevel=data.permissionlevel
+        console.log(data);
+        $("#avatar").attr("src",data.avatar)
+        $("#nickname").html("<br>昵称："+data.nickname)
+        $("#username").html("<br>用户名："+data.username)
+        $("#password").html("<br>密码："+data.password)
+        $("#email").html("<br>Email："+data.email)
+          if(data.steamid!=null) {
+              $ ("#steamID").html ("<a href='https://steamcommunity.com/id/" + data.steamid + "'><br>SteamID:" + data.steamid + "</a>")
+          }
+        $("#bio").html("<br>个性签名："+data.bio)
+          $("#permissionlevel").html("<br>权限等级："+data.permissionlevel)
+      }else {
+        $.get("/getUserById",{"uid":uid},function (data2){
+            console.log(data2);
+          $("#avatar").attr("src",data2.avatar)
+          $("#nickname").html("<br>昵称："+data2.nickname)
+          $("#username").html("<br>用户名："+data2.username)
+            if(permissionlevel<2) {
+                $ ("#password").html ("<br>密码：不可以看别人的密码哦")
+            }else {
+                $ ("#password").html ("<br>密码：不可以看别人的密码哦!不过...考虑到你是管理员...只能看一眼哦<br>密码："+data2.password)
+            }
+            if(data2.email!=null) {
+                $ ("#email").html ("<br>Email：" + data2.email)
+            }
+            if(data2.steamid!=null) {
+                $ ("#steamID").html ("<a href='https://steamcommunity.com/id/" + data2.steamid + "' target='_blank'><br>SteamID:" + data2.steamid + "</a>")
+            }
+          $("#bio").html("<br>个性签名："+data2.bio)
+        })
+      }
+    })
+
+</script>
+</html>
