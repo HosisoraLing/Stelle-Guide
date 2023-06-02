@@ -96,22 +96,20 @@ public class GameService {
         }
     }
 
-    public String addComment(Userrating userRating) {
-        if(userRatingDao.insert(userRating)!=0){
-            return "添加成功";
-        }else {
-            return "添加失败";
-        }
-    }
 
-    public String increaseAgree(Integer rid) {
-        Userrating rating=userRatingDao.selectById(rid);
-        Integer likes=rating.getAgree()+1;
-        rating.setAgree(likes);
-        if(userRatingDao.updateById(rating)!=0){
-            return "赞同成功";
+
+    public String updateRating(Integer gid, Integer rating) {
+        Game gameRs=gameDao.selectById(gid);
+        Integer num=gameRs.getNumberofratings();
+        Float ratings=gameRs.getRating()*num+rating;
+        num=num+1;
+        ratings=ratings/num;
+        gameRs.setRating(ratings);
+        gameRs.setNumberofratings(num);
+        if(gameDao.updateById(gameRs)>0){
+            return "更新成功";
         }else {
-            return "赞同失败";
+            return "更新失败";
         }
     }
 }

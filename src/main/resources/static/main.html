@@ -28,6 +28,7 @@
 
 </head>
 <body>
+<p><a href="UserList.html">查看用户数据</a> <a href="/logOut">注销</a></p>
 <div class="main">
   <div class="dy-content">
     <div class="dy-videos">
@@ -663,9 +664,16 @@
       //页面总页数
       $("#TotalPage").text(data.total);
       for (i=0;data.list.length;i++){
+        var rating=0.0;
+        rating=data.list[i].rating;
+        console.log(rating)
+        rating=rating.toFixed(1);
+        console.log(rating)
         $($("li .dy-video-img")[i]).attr("src",data.list[i].cover);
-        $($("li .game-rating")[i]).text(data.list[i].rating);
-        $($("li .game-rating2")[i]).text(data.list[i].rating);
+        $($("li .game-rating")[i]).text(rating);
+        console.log(rating)
+        $($("li .game-rating2")[i]).text(rating);
+        console.log(rating)
         $($("li .game-developer")[i]).text(data.list[i].developer);
         $($("li .game-type")[i]).text(data.list[i].type);
         $($("li .game-theme")[i]).text(data.list[i].theme);
@@ -675,7 +683,6 @@
         $($("li .game-title2")[i]).text(data.list[i].chinesetitle);
         $($("li .game-title3")[i]).html("<br>"+data.list[i].englishtitle);
         $($("li .game-title4")[i]).html(data.list[i].englishtitle);
-        $($(".dy-video-primary .dy-video-rating")[i]).text(data.list[i].rating);
         $($("li.click").eq([i])).attr("gid",data.list[i].gid)
         $($("li .game-jump")[i]).attr("href","GameDetail.html?gid="+data.list[i].gid)
         $($("li .game-jump")[i]).attr("target","_blank")

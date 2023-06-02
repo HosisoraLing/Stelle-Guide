@@ -67,8 +67,9 @@ public class GameController {
     public List<Userrating> getRatings(Integer gid){
         return  gameService.getRatings(gid);
     }
-    @RequestMapping("/increaseAgree")
-    public String increaseAgree(Integer rid){
-        return gameService.increaseAgree(rid);
+
+    @RequestMapping("/updateRating")
+    public String updateRating(Integer gid,Integer rating){
+        return gameService.updateRating(gid, rating);
     }
 }

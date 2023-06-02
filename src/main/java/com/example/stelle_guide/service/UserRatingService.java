@@ -14,6 +14,7 @@ public class UserRatingService {
     UserRatingDao userRatingDao;
     public String addComment(Userrating userRating) {
         if(userRatingDao.insert(userRating)!=0){
+
             return "添加成功";
         }else {
             return "添加失败";

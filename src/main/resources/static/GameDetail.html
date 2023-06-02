@@ -10,6 +10,10 @@
 	<link rel="stylesheet" href="css/Shopping.css"/>
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/comment.css">
+	<link type="text/css" href="css/style2.css" rel="stylesheet" />
+
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 	<meta name="referrer" content="no-referrer">
 	<style type="text/css">
 		* {
@@ -20,7 +24,10 @@
 		body {
 
 		}
-
+		.xzw_starSys{
+			position: relative;
+			margin-left: 500px;
+		}
 		#qq {
 			width: 600px;
 			/*宽*/
@@ -176,7 +183,7 @@
 			<img class="big" id="gameCover" src="">
 		</div>
 		<div class="a2">
-			<p id="gameName" class="title"></p>
+			<p id="gameName" class="title"></p><p id="pinfeng" style="text-align:right; text-size:35px ; color: red"></p>
 			<p id="englishName" class="engtitle"></p>
 			<div class="a21">
 				<div class="a211">
@@ -187,13 +194,13 @@
 					</div>
 					<div id="SaleRatio"></div>
 					<span class="yis" id="atlprice">历史最低：</span>
+					<span id="ratings"></span>
 				</div>
 				<div class="a22">
 					<p></p>
 					<span class="color">详情</span>
 					<span class="neir" id="gameIntro"></span>
 				</div>
-
 
 
 			</div>
@@ -411,13 +418,68 @@
 <!--	})-->
 <!--</script>-->
 <!--添加评论-->
+<!--代码开始-->
+<div class="xzw_starSys">
+	<div class="xzw_starBox">
+		<ul class="star stars">
+			<li><a href="javascript:void(0)" rate="1" title="1" class="one-star">1</a></li>
+			<li><a href="javascript:void(0)" rate="2" title="2" class="two-stars">2</a></li>
+			<li><a href="javascript:void(0)" rate="3" title="3" class="three-stars">3</a></li>
+			<li><a href="javascript:void(0)" rate="4" title="4" class="four-stars">4</a></li>
+			<li><a href="javascript:void(0)" rate="5" title="5" class="five-stars">5</a></li>
+		</ul>
+		<div class="current-rating showb"></div>
+	</div>
+	<!--评价文字-->
+	<div class="description"></div>
+	<!--评价选项-->
+	<div class="option">
+		<ul class="option-con clearfix">
+			<li><a href="">依托答辩</a></li>
+			<li><a href="">剧情狗屁不通</a></li>
+			<li><a href="">画面不堪入目</a></li>
+			<li><a href="">完全没有乐趣</a></li>
+			<li><a href="">开发商恶心人</a></li>
+		</ul>
+		<ul class="option-con clearfix" style="display:none">
+			<li><a href="">制作水平有待提高</a></li>
+			<li><a href="">剧情平淡无趣</a></li>
+			<li><a href="">玩法缺乏乐趣</a></li>
+			<li><a href="">BUG满天飞</a></li>
+			<li><a href="">十分无聊</a></li>
+		</ul>
+		<ul class="option-con clearfix" style="display:none">
+			<li><a href="">中规中矩</a></li>
+			<li><a href="">瑕不掩瑜</a></li>
+			<li><a href="">存在部分问题</a></li>
+			<li><a href="">可圈可点</a></li>
+			<li><a href="">体验尚可</a></li>
+		</ul>
+		<ul class="option-con clearfix" style="display:none">
+			<li><a href="">出色的作品</a></li>
+			<li><a href="">优秀的剧情</a></li>
+			<li><a href="">精美的画面</a></li>
+			<li><a href="">有趣的玩法</a></li>
+			<li><a href="">快乐的体验</a></li>
+		</ul>
+		<ul class="option-con clearfix" style="display:none">
+			<li><a href="">世不二出的奇迹</a></li>
+			<li><a href="">出色的第九艺术</a></li>
+			<li><a href="">完美的剧情</a></li>
+			<li><a href="">流连忘返的旅行</a></li>
+			<li><a href="">第二人生</a></li>
+		</ul>
+	</div>
+	<div class="prompt">请为该游戏打分</div>
+</div>
+<!--代码结束-->
 <div id="qq">
 	<p>有什么新鲜事想告诉大家?</p>
 	<div class="message" id="commentbox" contentEditable='true'></div>
 	<div class="But">
-		<img src="./images/bba_thumb.gif" class='bq' />
+
 		<span class='submit' onclick="addComment()">发表</span>
-		<input>
+
 	</div>
 </div>
 
@@ -480,7 +542,7 @@
 			return null;
 		}
 	}
-
+	rate=-1
 	$(function (){
 
 		var gid = getUrlParam("gid");
@@ -493,6 +555,10 @@
 			$("#webTitle").text(data.chinesetitle+"|星穹指南")
 			$("#msrp").text(data.defaultprice)
 			$("#englishName").text(data.englishtitle)
+			var pinfeng=0.0;
+			pinfeng=data.rating;
+			pinfeng=pinfeng.toFixed(1);
+			$("#pinfeng").text(pinfeng)
 			if(data.alltimelowprice==0){
 				$("#atlprice").text("历史最低：免费开玩！")
 			}else {
@@ -535,8 +601,14 @@
 
 		})
 		showComment()
-
+		var li = document.getElementsByTagName("li");
+		for(let i=0; i<li.length; i++) {
+			li[i].onclick = function (){
+				rate=i+1
+			}
+		}
 	})
+
 
 
 	function addComment(){
@@ -545,20 +617,30 @@
 		console.log("获取到时间："+mytime)
 		var gid = getUrlParam("gid");
 		var content =document.getElementById('commentbox').innerHTML
-		alert(content)
-		var rating=10.0
-		$.get("/getUser",null,function (data){
-			var uid = data.uid;
-			if (uid!=null){
-				alert("用户"+uid+"游戏"+gid+"评论"+content)
-				$.get("/addComment",{"uid":uid,"avatar":data.avatar,"nickname":data.nickname,"time":mytime,"gid":gid,"comment":content,"rating":rating},function (data){
-					showComment()
-				})
-			} else {
-				alert("请登录")
-				location.href = "GameDetail.html?gid="+gid;
-			}
-		})
+		console.log(content)
+		if(rate==-1){
+			alert("您还没有打分")
+			location.href = "GameDetail.html?gid="+gid;
+		}else {
+			$.get("/getUser",null,function (data){
+				var uid = data.uid;
+				if (uid!=null){
+					console.log("用户："+uid+" 游戏："+gid+" 评论："+content)
+					$.get("/addComment",{"uid":uid,"avatar":data.avatar,"nickname":data.nickname,"time":mytime,"gid":gid,"comment":content,"rating":rate},function (data){
+						showComment()
+					})
+					$.get("/updateRating", {gid:gid, rating:rate},function (data){
+						alert(data)
+					})
+					$("#commentbox").text("")
+				} else {
+					alert("请登录")
+					location.href = "GameDetail.html?gid="+gid;
+					window.open("index.html")
+				}
+			})
+		}
+
 
 
 	}
@@ -575,14 +657,14 @@
 				tbody+="<div class=\"headUrl\">" +
 						"<img src='"+data[i].avatar+"' width='50' height='50'>" +
 						"<div>" +
-						"<span class=\"title\">"+data[i].nickname+"</span>" +
+						"<span class=\"title\" style='text-size:20px'>"+data[i].nickname+"</span>" +"<span class=\"rate\" style='color: red'>评分："+data[i].rating+"</span>" +
 						"<span class=\"time\">"+data[i].time+"</span>" +
 						"</div>" +
 						"<a class=\"del\">删除</a>" +
 						"</div>" +
 						"<div class='msgTxt'>"+
 						data[i].comment+
-						"</div>"
+						"</div> <hr><br>"
 			}
 			$(".msgBox").html(tbody);
 
