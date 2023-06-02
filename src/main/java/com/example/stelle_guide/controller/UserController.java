@@ -66,7 +66,11 @@ public class UserController {
     @RequestMapping("/getNickName")
     public String getNickName(HttpSession session){
         User user = (User) session.getAttribute("user1");
-        return user.getNickname();
+        if(user!=null) {
+            return user.getNickname();
+        }else {
+            return "尚未登录";
+        }
     }
 
     @RequestMapping("/getPermissionLevel")
