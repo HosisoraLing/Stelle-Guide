@@ -1,6 +1,7 @@
 package com.example.stelle_guide.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.stelle_guide.dao.UserDao;
 import com.example.stelle_guide.pojo.User;
 import jakarta.servlet.http.HttpSession;
@@ -81,5 +82,15 @@ public class UserService {
         QueryWrapper<User> qw = new QueryWrapper();
         qw.eq("uid",uid);
         return userDao.selectById(uid);
+    }
+
+    public String updateUser(User user) {
+        UpdateWrapper<User> uw=new UpdateWrapper<>();
+        uw.eq("uid",user.getUid());
+        if(userDao.update(user, uw) >0){
+            return "修改成功";
+        }else {
+            return "修改失败";
+        }
     }
 }

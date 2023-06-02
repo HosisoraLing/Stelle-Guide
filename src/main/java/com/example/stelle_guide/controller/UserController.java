@@ -102,4 +102,13 @@ public class UserController {
             return "尚未登录";
         }
     }
+    @RequestMapping("/updateUser")
+    public String updateUser(User user,HttpSession session){
+        User userRs=(User) session.getAttribute("user1");
+        if(userRs.getUid()==user.getUid()){
+            return userService.updateUser(user);
+        }else {
+            return "发生未知错误";
+        }
+    }
 }

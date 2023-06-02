@@ -19,14 +19,18 @@
     </script>
 </div>
     <div>
-      <image id="avatar" src=""></image><span id="nickname"></span>
-      <span id="username"></span>
-      <span id="uid"></span>
-      <span id="password"></span>
-      <span id="email"></span>
-      <span id="steamID"></span>
-      <span id="bio"></span>
+      <image id="avatar" src=""></image>
+
+
+      <span id="username0"></span>
+      <br>UID:<span id="uid0"></span>
+      <br>昵称：<span id="nickname0"></span>
+      <br>密码：<span id="password"></span>
+      <br>Email:<span id="email"></span>
+      <br><a id="linkToSteam">SteamID:</a><span id="steamID"></span>
+      <br>个性签名:<span id="bio"></span>
       <span id="permissionlevel"></span>
+      <br><button id="updatebutton" onclick="update()">更新个人信息</button>
     </div>
 </body>
 <script>
@@ -51,37 +55,79 @@
       if(data.uid==uid){
           permissionlevel=data.permissionlevel
         console.log(data);
+          var t = document.getElementById('updatebutton');//选取id为SaleRatio的div元素// 隐藏元素
+          t.style.visibility = 'visible';
         $("#avatar").attr("src",data.avatar)
-        $("#nickname").html("<br>昵称："+data.nickname)
-        $("#username").html("<br>用户名："+data.username)
-        $("#password").html("<br>密码："+data.password)
-        $("#email").html("<br>Email："+data.email)
+          $("#uid0").html(data.uid)
+        $("#nickname0").html(data.nickname)
+          $("#nickname0").attr("contentEditable","true")
+        $("#username0").html("<br>用户名："+data.username)
+        $("#password").html(data.password)
+          $("#password").attr("contentEditable","true")
+        $("#email").html(data.email)
+          $("#email").attr("contentEditable","true")
           if(data.steamid!=null) {
-              $ ("#steamID").html ("<a href='https://steamcommunity.com/id/" + data.steamid + "'><br>SteamID:" + data.steamid + "</a>")
+              $ ("#steamID").html (data.steamid)
+              $("linkToSteam").attr("href","https://steamcommunity.com/id/"+data.steamid)
+              $("#steamID").attr("contentEditable","true")
           }
-        $("#bio").html("<br>个性签名："+data.bio)
+        $("#bio").html(data.bio)
+          $("#bio").attr("contentEditable","true")
           $("#permissionlevel").html("<br>权限等级："+data.permissionlevel)
       }else {
+          var t = document.getElementById('updatebutton');//选取id为SaleRatio的div元素// 隐藏元素
+          t.style.visibility = 'hidden';
         $.get("/getUserById",{"uid":uid},function (data2){
             console.log(data2);
+            $("#uid0").html(data2.uid)
           $("#avatar").attr("src",data2.avatar)
-          $("#nickname").html("<br>昵称："+data2.nickname)
-          $("#username").html("<br>用户名："+data2.username)
+          $("#nickname0").html(data2.nickname)
+          $("#username0").html("<br>用户名："+data2.username)
             if(permissionlevel<2) {
                 $ ("#password").html ("<br>密码：不可以看别人的密码哦")
             }else {
-                $ ("#password").html ("<br>密码：不可以看别人的密码哦!不过...考虑到你是管理员...只能看一眼哦<br>密码："+data2.password)
+                $ ("#password").html ("不可以看别人的密码哦!不过...考虑到你是管理员...只能看一眼哦<br>密码："+data2.password)
             }
             if(data2.email!=null) {
-                $ ("#email").html ("<br>Email：" + data2.email)
+                $ ("#email").html (data2.email)
             }
             if(data2.steamid!=null) {
                 $ ("#steamID").html ("<a href='https://steamcommunity.com/id/" + data2.steamid + "' target='_blank'><br>SteamID:" + data2.steamid + "</a>")
             }
-          $("#bio").html("<br>个性签名："+data2.bio)
+          $("#bio").html(data2.bio)
         })
       }
     })
-
+  function update(){
+      var password=""
+      password=document.getElementById('password').innerHTML
+      var nickname=""
+      nickname=document.getElementById('nickname0').innerHTML
+      var email=""
+      email=document.getElementById('email').innerHTML
+      var steamid=""
+      steamid=document.getElementById('steamID').innerHTML
+      var bio=""
+      bio=document.getElementById("bio").innerHTML
+      user=new Object();
+      user={
+          "uid":uid,
+          "password":password,
+          "nickname":nickname,
+          "email":email,
+          "steamid":steamid,
+          "bio":bio
+      }
+      var name=prompt("请输入你的UID以确认");
+      if (name!=null && name!=""){
+          if(name==uid){
+                $.get("/updateUser",user,function (data){
+                    alert(data)
+                    location.href="index.html"//显示的信息来自session，所以需要重新登录以应用更改
+                })
+          }
+      }
+      console.log(user)
+  }
 </script>
 </html>
