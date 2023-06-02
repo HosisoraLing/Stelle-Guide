@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.stelle_guide.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,7 +24,32 @@ public class UserController {
         return userService.selectUser(session);
 
     }
+    @RequestMapping("/updateAvatar")
+    public String updateAvatar(HttpSession session, MultipartFile file){
+        User user = (User) session.getAttribute("user1");
+        if (user!=null) {
+            if (file.isEmpty()) {
+                return "文件不存在";
+            }
+            String originalFilename = file.getOriginalFilename();
+            System.out.println("文件名：" + originalFilename);
+            String extensionName = "." + originalFilename.split("\\.")[1];
+            String localPath = "E:\\Stelle Guide\\avatar";
+            String newFilename=user.getUsername()+extensionName;
+            String Path = localPath+"\\"+newFilename;
+            System.out.println(Path);
+            try {
+                file.transferTo(new File(Path));
+                System.out.println("图片保存成功—"+Path);
+                return "http://localhost:8192/updateAvatar/"+newFilename;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
+        }else {
+            return "用户信息获取错误，可能没有登录";
+        }
+    }
     @RequestMapping("/login")
     public String login(User user,HttpSession session){
 
@@ -48,8 +76,14 @@ public class UserController {
 
     @RequestMapping("/getUser")
     public User getUser(HttpSession session){
+        System.out.println("getUser");
         User user = (User) session.getAttribute("user1");
-        return user;
+        System.out.println(user);
+        if(user!=null) {
+            return user;
+        }else {
+            return null;
+        }
     }
 
     @RequestMapping("/getUserById")

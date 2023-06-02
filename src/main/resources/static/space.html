@@ -8,24 +8,24 @@
 </head>
 <body>
 <div>
-    <p style="font-size: 20px;text-align: right;background-color: gray"><a href="main.html" style="text-align: left">返回主页</a>欢迎：<image width='30' height='30' id="avatar0" style=""></image><a href="" id="nickname" target="_blank"></a> <a href="/logOut">注销</a></p>
+    <p style="font-size: 20px;text-align: right;background-color: gray"><a href="main.html" style="text-align: left">返回主页</a>欢迎：<image width='30' height='30' id="avatar0" style=""></image><a href="" id="nickname123" target="_blank"></a> <a href="/logOut">注销</a></p>
     <script>
         $.get("/getUser",null,function (data){
             if(data.nickname!=null) {
-                $ ("#nickname").load (data.nickname);
+                $ ("#nickname123").html (data.nickname);
 
-                $ ("#nickname").attr ("href", "/space.html?uid=" + data.uid)
+                $ ("#nickname123").attr ("href", "/space.html?uid=" + data.uid)
             }else {
-                $ ("#nickname").text ("尚未登录");
+                $ ("#nickname123").text ("尚未登录");
 
-                $ ("#nickname").attr ("href", "index.html")
+                $ ("#nickname123").attr ("href", "index.html")
             }
             $("#avatar0").attr("src",data.avatar)
         })
     </script>
 </div>
     <div>
-      <image id="avatar" src=""></image>
+      <image id="avatar" src="" alt="没有头像"></image>
 
 
       <span id="username0"></span>
@@ -37,6 +37,9 @@
       <br>个性签名:<span id="bio"></span>
       <span id="permissionlevel"></span>
       <br><button id="updatebutton" onclick="update()">更新个人信息</button>
+      <div id="fileUp">
+        <br>上传/修改你的头像：<input type="file" id="file" onchange="uploadAvatar()">
+      </div>
     </div>
 </body>
 <script>
@@ -63,6 +66,8 @@
         console.log(data);
           var t = document.getElementById('updatebutton');//选取id为SaleRatio的div元素// 隐藏元素
           t.style.visibility = 'visible';
+          var f = document.getElementById('fileUp');//选取id为SaleRatio的div元素// 隐藏元素
+          f.style.visibility = 'visible';
         $("#avatar").attr("src",data.avatar)
           $("#uid0").html(data.uid)
         $("#nickname0").html(data.nickname)
@@ -83,6 +88,8 @@
       }else {
           var t = document.getElementById('updatebutton');//选取id为SaleRatio的div元素// 隐藏元素
           t.style.visibility = 'hidden';
+          var f = document.getElementById('fileUp');//选取id为SaleRatio的div元素// 隐藏元素
+          f.style.visibility = 'hidden';
         $.get("/getUserById",{"uid":uid},function (data2){
             console.log(data2);
             $("#uid0").html(data2.uid)
@@ -134,6 +141,45 @@
           }
       }
       console.log(user)
+  }
+  function uploadAvatar(){
+        var files=$("#file")[0].files
+        var fd=new FormData();
+        fd.append("file",files[0]);
+        $.ajax({
+            type:"post",
+            url:"/updateAvatar",
+            data:fd,
+            processData:false,
+            contentType:false,
+            success:function (data){
+                if(data=="图片不存在"){
+                    console.log (data)
+                    alert(data)
+                }else if(data=="用户信息获取错误，可能没有登录"){
+                    console.log (data)
+                    alert(data)
+                }else {
+                    alert ("头像更新成功")
+                    console.log (data)
+                    user = new Object ();
+                    user = {
+                        "uid": uid,
+                        "avatar": data
+                    }
+                    var name = prompt ("请输入你的UID以确认");
+                    if (name != null && name != "") {
+                        if (name == uid) {
+                            $.get ("/updateUser", user, function (data) {
+                                alert (data)
+                                location.href = "index.html"//显示的信息来自session，所以需要重新登录以应用更改
+                            })
+                        }
+                    }
+                    console.log (user)
+                }
+            }
+        })
   }
 </script>
 </html>
