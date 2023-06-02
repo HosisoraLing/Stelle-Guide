@@ -58,16 +58,22 @@ public class UserService {
         }
 
 */
-        if(user.getAvatar()==null) {
-            user.setAvatar("https://i2.hdslb.com/bfs/face/e76fc676b58f23c6bd9161723f12da00c7e051c5.jpg@240w_240h_1c_1s_!web-avatar-space-header.webp");
+        QueryWrapper qw=new QueryWrapper();
+        qw.eq("username",user.getUsername());
+        User userRs=userDao.selectOne(qw);
+        if(qw==null) {
+            if (user.getAvatar() == null) {
+                user.setAvatar("https://i2.hdslb.com/bfs/face/e76fc676b58f23c6bd9161723f12da00c7e051c5.jpg@240w_240h_1c_1s_!web-avatar-space-header.webp");
+            }
+            int num = userDao.insert(user);
+            if (num != 0) {
+                return "添加成功";
+            } else {
+                return "添加失败";
+            }
+        }else {
+            return "用户名已被占用";
         }
-        int num = userDao.insert(user);
-        if(num!=0){
-            return "添加成功";
-        }else{
-            return "添加失败";
-        }
-
     }
 
     public User getUserById(Integer uid) {
