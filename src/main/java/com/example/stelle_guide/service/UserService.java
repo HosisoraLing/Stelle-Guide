@@ -61,7 +61,7 @@ public class UserService {
         QueryWrapper qw=new QueryWrapper();
         qw.eq("username",user.getUsername());
         User userRs=userDao.selectOne(qw);
-        if(qw==null) {
+        if(userRs==null) {
             if (user.getAvatar() == null) {
                 user.setAvatar("https://i2.hdslb.com/bfs/face/e76fc676b58f23c6bd9161723f12da00c7e051c5.jpg@240w_240h_1c_1s_!web-avatar-space-header.webp");
             }
