@@ -45,21 +45,6 @@ public class UserService {
 
 
     public String insert(User user) {
-
-       /* QueryWrapper qw = new QueryWrapper(user);
-        User userRs=userDao.selectOne(qw);
-        if(userRs.getUsername()!=null){
-            return "用户已存在";
-        }else{
-            int num = userDao.insert(user);
-            if(num!=0){
-                return "添加成功";
-            }else{
-                return "添加失败";
-            }
-        }
-
-*/
         QueryWrapper qw=new QueryWrapper();
         qw.eq("username",user.getUsername());
         User userRs=userDao.selectOne(qw);
