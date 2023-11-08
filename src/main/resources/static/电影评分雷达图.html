@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts Radar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "https://fs-im-kefu.7moor-fs1.com/29397395/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1699338974337/leidatable-1699337715046.json", // 替换为你的JSON文件路径
+                dataType: "json",
+                success: function (data) {
+                    var myChart = echarts.init(document.getElementById('main'));
+
+                    var option = {
+                        title: {
+                            text: '电影评分雷达图'
+                        },
+                        tooltip: {},
+                        legend: {
+                            data: data.map(item => item.name)
+                        },
+                        radar: {
+                            indicator: [
+                                { name: '人物角色', max: 10, min: 0},
+                                { name: '悬念', max: 10, min: 0},
+                                { name: '情绪', max: 10, min: 0},
+                                { name: '剧情', max: 10, min: 0},
+                                { name: '总体', max: 10, min: 0}
+                            ]
+                        },
+                        series: [{
+                            name: '电影评分',
+                            type: 'radar',
+                            data: data.map(item => ({
+                                value: [item.rwjs, item.xl, item.qx, item.jq, item.zt],
+                                name: item.name
+                            })),
+                            emphasis: {
+                                lineStyle: {
+                                    width: 4
+                                }
+                            }
+                        }]
+                    };
+
+                    myChart.setOption(option);
+                },
+                error: function (error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

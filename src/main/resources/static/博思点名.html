@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博思点名</title>
+    <style>
+ .test3{
+    border:5px solid #a0b3d6;/*设置边框1px，实线，边框线色为#a0b3d6 */
+    width: 500px;
+    min-height: 1920px;
+    font-size: 14px;
+    padding: 4px;
+    color: #333;
+    outline:0; /* 当元素获得焦点的时候，焦点框为0.去掉虚线框（或高亮框）*/
+  }
+
+/* 当输入框为空时，显示默认文字 */
+ .test3:empty::before{
+    content:attr(placeholder); /*获取属性的值 attr（value）,可以获得属性值 */
+    color: #999;
+  }
+</style>
+</head>
+<body>
+  <div class="test3" contenteditable="true" placeholder="请输入内容..."></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MQTT HTML Example</title>
+</head>
+<body>
+    <div id="status">Connecting to MQTT Server...</div>
+    <div id="data">Waiting for data...</div>
+
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script>
+        var client = mqtt.connect("wss://118.24.230.64:1883");
+
+        client.on("connect", function () {
+            var statusElement = document.getElementById("status");
+            statusElement.innerText = "Connected to MQTT Server";
+            client.subscribe("HS0/s0");
+        });
+
+        client.on("message", function (topic, message) {
+            var dataElement = document.getElementById("data");
+            dataElement.innerText = message.toString();
+        });
+
+        client.on("error", function (error) {
+            var statusElement = document.getElementById("status");
+            statusElement.innerText = "Connection failed: " + error;
+        });
+
+        client.on("reconnect", function () {
+            var statusElement = document.getElementById("status");
+            statusElement.innerText = "Reconnecting...";
+        });
+
+        client.on("offline", function () {
+            var statusElement = document.getElementById("status");
+            statusElement.innerText = "Connection is offline.";
+        });
+
+        client.on("close", function () {
+            var statusElement = document.getElementById("status");
+            statusElement.innerText = "Connection is closed.";
+        });
+    </script>
+</body>
+</html>

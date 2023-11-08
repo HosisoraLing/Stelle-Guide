@@ -3,6 +3,8 @@ package com.example.stelle_guide.controller;
 import com.example.stelle_guide.pojo.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.stelle_guide.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,6 +59,14 @@ public class UserController {
 
     }
 
+    @RequestMapping("/getPythonData")
+    public ResponseEntity<String> receiveData(@RequestBody String data) {
+        // 在这里处理接收到的数据
+        // YourDataClass应该是您定义的类，用于表示接收到的数据结构
+        System.out.println("Received data: " + data);
+        return ResponseEntity.ok("Data received successfully.");
+    }
+}
     @RequestMapping("/register")
     public String insert(User user){
 
