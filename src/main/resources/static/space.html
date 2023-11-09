@@ -45,6 +45,12 @@
 <script>
   function getUrlParam(name) {
     //
+     $.get("/selectMessage",function (data){
+        console.log(data)
+      //修改页面
+
+
+    })
     var reg = new RegExp ("(^|&)" + name + "=([^&]*)(&|$)");
     //保存地址栏那个请求的参数
     var r = window.location.search.substr (1).match (reg);
@@ -143,6 +149,9 @@
           }
       }
       console.log(user)
+  }
+  function MQTTMsg(){
+
   }
   function uploadAvatar(){
         var files=$("#file")[0].files

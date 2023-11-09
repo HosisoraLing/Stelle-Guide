@@ -59,14 +59,8 @@ public class UserController {
 
     }
 
-    @RequestMapping("/getPythonData")
-    public ResponseEntity<String> receiveData(@RequestBody String data) {
-        // 在这里处理接收到的数据
-        // YourDataClass应该是您定义的类，用于表示接收到的数据结构
-        System.out.println("Received data: " + data);
-        return ResponseEntity.ok("Data received successfully.");
-    }
-}
+
+
     @RequestMapping("/register")
     public String insert(User user){
 
