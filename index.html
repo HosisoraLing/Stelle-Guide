@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts示例</title>
+    <!-- 引入 ECharts 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <!-- 用于呈现折线图的容器 -->
+    <div id="line-chart-container" style="width: 600px;height:400px;"></div>
+
+    <!-- 用于呈现饼图的容器 -->
+    <div id="pie-chart-container" style="width: 600px;height:400px;"></div>
+
+    <script type="text/javascript">
+        var lineChart = echarts.init(document.getElementById('line-chart-container'));
+        var pieChart = echarts.init(document.getElementById('pie-chart-container'));
+
+        // 用户使用次数数据
+        var timesData = [
+            {"time":0,"num":19287},
+            {"time":1,"num":13022},
+            {"time":2,"num":9782},
+            {"time":3,"num":7865},
+            {"time":4,"num":7135},
+            {"time":5,"num":6567},
+            {"time":6,"num":8086},
+            {"time":7,"num":10258},
+            {"time":8,"num":14087},
+            {"time":9,"num":19551},
+            {"time":10,"num":20248},
+            {"time":11,"num":25964},
+            {"time":12,"num":33553},
+            {"time":13,"num":33190},
+            {"time":14,"num":30636},
+            {"time":15,"num":33046},
+            {"time":16,"num":33481},
+            {"time":17,"num":34940},
+            {"time":18,"num":40668},
+            {"time":19,"num":46922},
+            {"time":20,"num":45367},
+            {"time":21,"num":44491},
+            {"time":22,"num":40393},
+            {"time":23,"num":32901}
+        ];
+
+        // 终端设备数据
+        var terminalData = [
+            {"terminal":"phone","num":100611},
+            {"terminal":"pad","num":11354},
+            {"terminal":"pc","num":500106}
+        ];
+
+       var lineOption = {
+            title: {
+                text: '用户不同时刻使用次数',
+                subtext: '单位：次'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            xAxis: {
+                type: 'category',
+                data: timesData.map(item => item.time),
+                min: 0, // 设置 x 轴最小值
+                max: 23 // 设置 x 轴最大值
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: timesData.map(item => item.num),
+                type: 'line'
+            }]
+        };
+
+        var pieOption = {
+            title: {
+                text: '用户终端设备分布',
+                subtext: '单位：台'
+            },
+            series: [{
+                type: 'pie',
+                radius: '50%',
+                data: terminalData.map(item => ({value: item.num, name: item.terminal})),
+            }]
+        };
+
+        lineChart.setOption(lineOption);
+        pieChart.setOption(pieOption);
+    </script>
+</body>
+
+</html>
