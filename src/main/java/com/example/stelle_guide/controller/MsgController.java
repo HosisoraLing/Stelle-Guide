@@ -29,7 +29,7 @@ public class MsgController {
             return ResponseEntity.ok("Data received successfully.");
         }else {
             System.out.println("存入数据库失败");
-            return ResponseEntity.ok("Data received successfully.");
+            return ResponseEntity.ok("Data received successfully,but failed to store in database.");
         }
     }
     @RequestMapping("/selectMessage")

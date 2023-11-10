@@ -26,7 +26,7 @@ public class MsgService {
 
     public List<Msg> selectMessage() {
         QueryWrapper qw=new QueryWrapper();
-        qw.isNotNull("MsgID");
+        qw.isNotNull("topic");
 
         return msgDao.selectList(qw);
     }

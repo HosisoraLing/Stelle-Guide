@@ -1,6 +1,7 @@
 package com.example.stelle_guide.controller;
 
 import com.example.stelle_guide.pojo.Msg;
+import com.example.stelle_guide.pojo.Waitingline;
 import com.example.stelle_guide.service.TopicsService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class TopicsController {
         return topicsService.bindingList(id);
     }
     @RequestMapping("/listenByID")
-    public String listenByID(Integer id, HttpSession session){
+    public List<Msg> listenByID(Integer id, HttpSession session){
         return topicsService.listenByID(id, session);
     }
     @RequestMapping("/sendData")
@@ -40,5 +41,13 @@ public class TopicsController {
     @RequestMapping("/GetHistory")
     public List<Msg> getHistory(String topic){
         return topicsService.getHistory(topic);
+    }
+    @RequestMapping("/subscribeTopic")
+    public String subscribeTopic(){
+        return topicsService.subcribeTopic();
+    }
+    @RequestMapping("/PySendMessage")
+    public List<Waitingline> sendMessage(){
+        return topicsService.PySendMessage();
     }
 }

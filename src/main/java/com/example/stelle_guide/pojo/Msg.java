@@ -6,9 +6,6 @@ import lombok.Data;
 
 @Data
 public class Msg {
-    @TableId(value = "MsgID",type = IdType.AUTO)
-    private Integer MsgID;
-    private String msg;
     private String message;
     private String topic;
     private String time;
@@ -37,19 +34,7 @@ public class Msg {
         this.time = time;
     }
 
-    public Integer getMsgID() {
-        return MsgID;
-    }
 
-    public void setMsgID(Integer msgID) {
-        MsgID = msgID;
-    }
 
-    public String getMsg() {
-        return msg;
-    }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }
