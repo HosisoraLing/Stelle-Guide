@@ -17,7 +17,9 @@ import java.util.List;
 public class TopicsService {
     @Autowired
     TopicsDao topicsDao;
+    @Autowired
     MsgService msgService;
+    @Autowired
     WaitinglineService waitingLineService;
     public String bindID(Integer id, String topic) {
         QueryWrapper qw = new QueryWrapper();
