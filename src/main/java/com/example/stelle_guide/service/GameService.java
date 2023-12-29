@@ -19,7 +19,9 @@ import java.util.Map;
 public class GameService {
     @Autowired
     GameDao gameDao;
+    @Autowired
     Discount_HistoryDao discount_historyDao;
+    @Autowired
     UserRatingDao userRatingDao;
 
 
